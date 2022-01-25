@@ -32,9 +32,9 @@ interface BooksApiService {
 //    get JSON response string
 //    use @GET annotation to tell retrofit what method does
     @GET("sdk/api/v01/book_data.php")
-    fun getProperties():
+    suspend fun getProperties():
 //        ask Retrofit to return a list of BookProperty objects from JSON array
-        Call<List<BookProperty>>
+        List<BookResponse>
 }
 
 //expose Retrofit service to the rest of application using public object

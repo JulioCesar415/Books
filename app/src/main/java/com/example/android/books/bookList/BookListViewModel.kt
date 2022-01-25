@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.books.network.BookProperty
+import com.example.android.books.network.BookResponse
 import com.example.android.books.network.BooksApi
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,12 +27,12 @@ class BookListViewModel : ViewModel(){
     private fun getBookProperties(){
 //        call BooksApi which returns a call object
 //        call enqueue on callback to start network request on background thread
-        BooksApi.retrofitService.getProperties().enqueue(object : Callback<List<BookProperty>> {
-            override fun onResponse(call: Call<List<BookProperty>>, response: Response<List<BookProperty>>) {
+        BooksApi.retrofitService.getProperties().enqueue(object : Callback<List<BookResponse>> {
+            override fun onResponse(call: Call<List<BookResponse>>, response: Response<List<BookResponse>>) {
                 _response.value = "Success: ${response.body()?.size} Book properties retrieved"
             }
 
-            override fun onFailure(call: Call<List<BookProperty>>, t: Throwable) {
+            override fun onFailure(call: Call<List<BookResponse>>, t: Throwable) {
                 _response.value = "Failure: " + t.message
             }
 
