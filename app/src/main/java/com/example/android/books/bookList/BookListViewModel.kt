@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.books.network.BookProperty
+import com.example.android.books.network.BookResponse
 import com.example.android.books.network.BooksApi
 import kotlinx.coroutines.launch
 
@@ -43,5 +45,6 @@ class BookListViewModel : ViewModel(){
                 _response.value = "Failure: ${e.message}"
             }
         }
+
     }
 }
