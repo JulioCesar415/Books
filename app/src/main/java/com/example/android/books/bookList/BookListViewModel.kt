@@ -23,8 +23,9 @@ class BookListViewModel : ViewModel(){
         getBookProperties()
     }
 
+
 //    method calls Retrofit service and handles returned JSON String
-    private fun getBookProperties(){
+    private suspend fun getBookProperties(){
 //        call BooksApi which returns a call object
 //        call enqueue on callback to start network request on background thread
         BooksApi.retrofitService.getProperties().enqueue(object : Callback<List<BookResponse>> {
