@@ -13,10 +13,16 @@ import kotlinx.coroutines.launch
 class BookListViewModel : ViewModel(){
 
 //    internal MutableLiveData String stores status of most recent request
-    private val _response = MutableLiveData<String>()
+    private val _status = MutableLiveData<String>()
 //    external LiveData for requests status String
-    val response: LiveData<String>
-    get() = _response
+    val status: LiveData<String>
+    get() = _status
+
+//    internal MutableLiveData data class stores book
+    private val _book = MutableLiveData<BookProperty>()
+//    external LiveData for requests book data class
+    val book: LiveData<BookProperty>
+    get() = _book
 
     init {
         getBookProperties()
@@ -40,11 +46,13 @@ class BookListViewModel : ViewModel(){
         viewModelScope.launch{
             try {
                 var listResult = BooksApi.retrofitService.getProperties()
-                _response.value = "Success: ${listResult.size} Book properties retrieved"
+                _status.value = "Success: ${listResult.size} Book properties retrieved"
+                if (listResult.size > 0){
+                    _book.value = listResult[0]
+                }
             }catch (e: Exception){
-                _response.value = "Failure: ${e.message}"
+                _status.value = "Failure: ${e.message}"
             }
         }
-
     }
 }

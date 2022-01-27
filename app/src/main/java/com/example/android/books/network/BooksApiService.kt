@@ -34,7 +34,7 @@ interface BooksApiService {
     @GET("sdk/api/v01/book_data.php")
     suspend fun getProperties():
 //        ask Retrofit to return a list of BookProperty objects from JSON array
-        List<BookResponse>
+        List<BookProperty>
 }
 
 //expose Retrofit service to the rest of application using public object

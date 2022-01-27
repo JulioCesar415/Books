@@ -31,12 +31,16 @@ class BookListFragment : Fragment() {
             inflater, R.layout.fragment_book_list, container, false
         )
 
+//        allow data binding to observe liveData with the lifecycle of this fragment
         binding.lifecycleOwner = this
 
+//        give binding access to BookListViewModel
         binding.viewModel = viewModel
 
+//        enable options menu
         setHasOptionsMenu(true)
 
+//        return root view that all views are bind to
         return binding.root
     }
 
